@@ -97,7 +97,7 @@ export const createJob = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      data: { job },
+      data: { job: { ...job.toObject(), applications: 0 } },
     });
   } catch (error) {
     return res.status(500).json({
@@ -185,10 +185,7 @@ export const changeJobStatus = async (req, res) => {
     return res.status(200).json({
       success: true,
       data: {
-        job: {
-          ...job.toObject(),
-          active,
-        },
+        active,
       },
     });
   } catch (error) {
